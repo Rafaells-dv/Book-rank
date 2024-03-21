@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs'); -%>
+    <div class="container">
+        <div class="introduction-header">
+            <div><h1 class="title">My Book list</h1><a href="/newbook"><button class="edit-buttons" type="button">Add</button></a></div>
+            <h2 class="libre-franklin-content-text">This is a list of books I've read and ranked from best to worst.</h2>
+        </div>
+        <div class="break-line"></div>
+        <% books.forEach((book) => { %>
+            <a href="/book/<%= book.id%>">  
+                <div class="book-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn%>-M.jpg">
+                    <div class="book-content">
+                        <h3 class="title"><%= book.name %></h3>
+                        <div class="libre-franklin-content-text">
+                            <div class="book-sub">
+                                <p>Date readed: <%= book.read_date.toLocaleDateString('pt-BR')%></p>
+                                <div>
+                                    <% for (var i = 0; i< book.rating; i++ ) {%>
+                                        <img src="/assets/icons/star.svg" id="icon-star">
+                                    <%};%>
+                                </div>
+                            </div>
+                            <p><%= book.notes %></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <%});%>
+    </div>
+<%- include('partials/footer.ejs') -%>

@@ -1,0 +1,33 @@
+<%- include('partials/header.ejs') -%>
+
+<div class="container">
+    <div class="introduction-header">
+        <div><h1 class="title">Add new book</h1><a href="/"><button class="edit-buttons" type="button">Back</button></a></div>
+    </div>
+    <form class="add-form libre-franklin-content-text" action="/addbook" method="post">
+        <div class="input-group">
+            <input type="text" name="bookName" placeholder="Book Title">
+            <input type="date" name="bookReadDate" placeholder="Date you readed the book">
+        </div>
+        <div class="textarea-group">
+            <textarea type="text" name="bookNote" placeholder="Note about the book"></textarea>
+        </div>
+        <div class="input-group">
+            <input type="number" name="bookIsbn" placeholder="ISBN">
+            <div class="rating-book-class">
+                <select id="rating-book" name="bookRating" title="bookRating">
+                    <option value="" disabled selected>Book rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="add-button">Add</button>
+    </form>
+</div>
+
+
+<%- include('partials/footer.ejs') -%>

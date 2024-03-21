@@ -1,0 +1,55 @@
+<%- include('partials/header.ejs'); -%>
+    <div id="formDelete" class="bg-confirm" hidden>
+        <form  action="/delete" method="post" class="confirm-delete">       
+            <div class="delete-options">
+                <p class="libre-franklin-content-text">Want to delete '<%=book.name%>'?</p>
+                <div class="book-options">
+                    <button type="submit" class="add-button" name="bookDelete" value="<%=book.id%>">Confirm</button>
+                    <button class="add-button" name="bookDeleteCancel" value="<%=book.id%>" onclick="cancelDelete()">Cancel</button>
+                </div>
+            </div>   
+        </form>
+    </div>
+    <div class="container">
+        <div class="introduction-header">
+            <div><h1 class="title"><%= book.name%></h1><a href="/"><button class="edit-buttons" type="button">Back</button></a></div>
+        </div>
+        <div class="break-line"></div>
+        <div class="book-container">
+            <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn%>-M.jpg">
+            <div class="book-content">
+                <div class="libre-franklin-content-text">
+                    <div class="book-sub">
+                        <p>Date readed: <%= book.read_date.toLocaleDateString('pt-BR')%></p>
+                        <div>
+                            <% for (var i = 0; i< book.rating; i++ ) {%>
+                                <img src="/assets/icons/star.svg" id="icon-star">
+                            <%};%>
+                        </div>
+                    </div>
+                    <p id="notes<%=book.id%>"><%= book.notes %></p>
+                    <div class="book-options">
+                        <% if (!(locals.error)){ %>
+                            <form action="/edit" method="post">
+                                <input type="hidden" name="updatedBookId" value="<%= book.id %>">
+                                <textarea id="input<%=book.id%>" type="text" name="updatedNote" autocomplete="off"
+                                autofocus="true" hidden="true"><%= book.notes%></textarea>
+                                <button id="done<%=book.id%>" class="edit-buttons" type="submit" hidden>Salvar</button>
+                            </form>
+                            <button id="edit<%=book.id%>" class="edit-buttons" onclick="handler('<%=book.id%>')">Editar</button>
+                        <% } else { %>
+                            <form action="/edit" method="post">
+                                <input type="hidden" name="updatedBookId" value="<%= book.id %>">
+                                <textarea id="input<%=book.id%>" type="text" name="updatedNote" autocomplete="off"
+                                autofocus="true" placeholder="<%= locals.error ? error :  book.notes%>"></textarea>
+                                <button id="done<%=book.id%>" class="edit-buttons" type="submit">Salvar</button>
+                            </form>
+                        <%}%>
+                        <button class="edit-buttons" onclick="confirmDelete()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script rel="script" src="/scripts/detail.js"></script>
+<%- include('partials/footer.ejs') -%>
