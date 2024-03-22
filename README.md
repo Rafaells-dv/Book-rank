@@ -1,8 +1,8 @@
-# Book-rank
+# Book Rank Site
 
 This is a Book ranking site that you can list all the books you readed and rank they, you can add a note for wich book listed.
 
-# Requities:
+# Requirements:
 1. PostgresDB 
 2. Node.js
 
