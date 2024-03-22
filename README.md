@@ -5,7 +5,7 @@ This is a Book ranking site that you can list all the books you readed and rank 
 # Requities:
 1. PostgresDB 
 2. Node.js
-3. 
+
 # To start the site:
 
 1. Clone or Fork the repository
